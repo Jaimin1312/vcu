@@ -1,0 +1,81 @@
+# NOTE: This is inspired by an earlier version which used the media server.
+# Date and time is now in ISO 8601-1:2019 basic format.
+# Observed no significant test time difference with -v (verbose) option with gst-launch-1.0
+DEVICES="0 3 5 6 7 4 1 2"
+HEIGHT=720
+FORMAT="RGBA"
+NUM_BUFFERS=1
+NUM_CAMERAS=8
+WIDTH=1280
+
+mkdir -pv ~/camera-capture/images ~/camera-capture/videos
+
+#gst-inspect-1.0 nvarguscamerasrc
+
+#for (( i=0; i<$NUM_CAMERAS; i++ ))
+for i in $DEVICES;
+do
+: '    gst-launch-1.0 \
+        -v \
+        nvarguscamerasrc \
+        num-buffers=$NUM_BUFFERS \
+        sensor-id=$i \
+        ! nvvidconv ! queue ! pngenc ! multifilesink \
+        location=/home/botuser/camera-capture/images/device"$i"_`date +'%Y%m%dT%H%M%S'`.png
+'
+    gst-launch-1.0 \
+        -v \
+        nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=$i \
+        ! "video/x-raw(memory:NVMM),width=1280,height=720" \
+        ! nvvidconv ! "video/x-raw,format=$FORMAT,width=$WIDTH,height=$HEIGHT" \
+        ! queue \
+        ! pngenc \
+        ! queue \
+        ! filesink location=/home/botuser/camera-capture/images/device"$i"_`date +'%Y%m%dT%H%M%S'`.png
+done
+
+# Take snapshot images from even numbered devices using G Streamer
+#echo "HERE 1"
+#gst-launch-1.0 nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=0 ! nvvidconv ! nvjpegenc ! multifilesink location=/home/botuser/camera-capture/images/device0_%m%d%Y-%H%M%S.jpg
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=0 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device0_%m%d%Y-%H%M%S.png
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=0 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device0_%05d.png
+#echo "HERE 2"
+#sleep 1
+#echo "HERE 3"
+#gst-launch-1.0 nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=2 ! nvvidconv ! nvjpegenc ! multifilesink location=/home/botuser/camera-capture/images/device2_%m%d%Y-%H%M%S.jpg
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=2 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device2_%m%d%Y-%H%M%S.png
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=2 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device2_%05d.png
+#echo "HERE 4"
+#sleep 1
+#echo "HERE 5"
+#gst-launch-1.0 nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=4 ! nvvidconv ! nvjpegenc ! multifilesink location=/home/botuser/camera-capture/images/device4_%m%d%Y-%H%M%S.jpg
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=4 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device4_%m%d%Y-%H%M%S.png
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=4 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device4_%05d.png
+#echo "HERE 6"
+#sleep 1
+#echo "HERE 7"
+#gst-launch-1.0 nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=6 ! nvvidconv ! nvjpegenc ! multifilesink location=/home/botuser/camera-capture/images/device6_%m%d%Y-%H%M%S.jpg
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=6 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device6_%m%d%Y-%H%M%S.png
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=6 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device6_%05d.png
+#echo "HERE 8"
+#sleep 1
+
+# Take snapshot images from odd numbered devices using G Streamer
+#gst-launch-1.0 nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=1 ! nvvidconv ! nvjpegenc ! multifilesink location=/home/botuser/camera-capture/images/device1_%m%d%Y-%H%M%S.jpg
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=1 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device1_%m%d%Y-%H%M%S.png
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=1 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device1_%05d.png
+#sleep 1
+#gst-launch-1.0 nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=3 ! nvvidconv ! nvjpegenc ! multifilesink location=/home/botuser/camera-capture/images/device3_%m%d%Y-%H%M%S.jpg
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=3 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device3_%m%d%Y-%H%M%S.png
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=3 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device3_%05d.png
+#sleep 1
+#gst-launch-1.0 nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=5 ! nvvidconv ! nvjpegenc ! multifilesink location=/home/botuser/camera-capture/images/device5_%m%d%Y-%H%M%S.jpg
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=5 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device5_%m%d%Y-%H%M%S.png
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=5 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device5_%05d.png
+#sleep 1
+#gst-launch-1.0 nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=7 ! nvvidconv ! nvjpegenc ! multifilesink location=/home/botuser/camera-capture/images/device7_%m%d%Y-%H%M%S.jpg
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=7 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device7_%m%d%Y-%H%M%S.png
+#gst-launch-1.0 -v nvarguscamerasrc num-buffers=$NUM_BUFFERS sensor-id=7 ! nvvidconv ! queue ! pngenc ! multifilesink location=/home/botuser/camera-capture/images/device7_%05d.png
+#sleep 1
+
+ls -al ~/camera-capture/images

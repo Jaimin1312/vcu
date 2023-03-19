@@ -1,0 +1,194 @@
+{
+    "c0":{
+	"capture" :{
+	    "type" : "CSI",
+	    "flip-method": 0,
+	    "device": "/dev/video0"
+	},
+	"streaming":{
+            "format": "rtsp",
+            "mapping": "stream0",
+            "port": 1230
+	},
+	"recording":{
+            "format": "mp4",
+            "duration": 60,
+            "filename": "/home/botuser/vlog/c0-720p-video-%m%d%Y-%H%M%S.mp4",
+	    "width": 1280,
+	    "height": 720,
+	    "bitrate": 4000000
+	},
+	"snapshot":{
+            "format": "png",
+            "filename": "/home/botuser/vlog/c0-720p-image-%m%d%Y-%H%M%S.png"
+	}
+    },
+    "c1":{
+	"capture" :{
+	    "type" : "CSI",
+	    "flip-method": 2,
+	    "device": "/dev/video1"
+	},
+	"streaming":{
+            "format": "rtsp",
+            "mapping": "stream1",
+            "port": 1231
+	},
+	"recording":{
+            "format": "mp4",
+            "duration": 60,
+            "filename": "/home/botuser/vlog/c1-720p-video-%m%d%Y-%H%M%S.mp4",
+	    "width": 1280,
+	    "height": 720,
+	    "bitrate": 4000000
+	},
+	"snapshot":{
+            "format": "png",
+            "filename": "/home/botuser/vlog/c1-720p-image-%m%d%Y-%H%M%S.png"
+	}
+    },
+    "c2":{
+	"capture" :{
+	    "type" : "CSI",
+	    "flip-method": 0,
+	    "device": "/dev/video2"
+	},
+	"streaming":{
+            "format": "rtsp",
+            "mapping": "stream2",
+            "port": 1232
+	},
+	"recording":{
+            "format": "mp4",
+            "duration": 60,
+            "filename": "/home/botuser/vlog/c2-720p-video-%m%d%Y-%H%M%S.mp4",
+	    "width": 1280,
+	    "height": 720,
+	    "bitrate": 4000000
+	},
+	"snapshot":{
+            "format": "png",
+            "filename": "/home/botuser/vlog/c2-720p-image-%m%d%Y-%H%M%S.png"
+	}
+    },
+    "c3":{
+	"capture" :{
+	    "type" : "CSI",
+	    "flip-method": 0,
+	    "device": "/dev/video3"
+	},
+	"streaming":{
+            "format": "rtsp",
+            "mapping": "stream3",
+            "port": 1233
+	},
+	"recording":{
+            "format": "mp4",
+            "duration": 60,
+            "filename": "/home/botuser/vlog/c3-720p-video-%m%d%Y-%H%M%S.mp4",
+	    "width": 1280,
+	    "height": 720,
+	    "bitrate": 4000000
+	},
+	"snapshot":{
+            "format": "png",
+            "filename": "/home/botuser/vlog/c3-720p-image-%m%d%Y-%H%M%S.png"
+	}
+    },
+    "c4":{
+	"capture" :{
+	    "type" : "CSI",
+	    "flip-method": 2,
+	    "device": "/dev/video4"
+	},
+	"streaming":{
+            "format": "rtsp",
+            "mapping": "stream4",
+            "port": 1234
+	},
+	"recording":{
+            "format": "mp4",
+            "duration": 60,
+            "filename": "/home/botuser/vlog/c4-720p-video-%m%d%Y-%H%M%S.mp4",
+	    "width": 1280,
+	    "height": 720,
+	    "bitrate": 4000000
+	},
+	"snapshot":{
+            "format": "png",
+            "filename": "/home/botuser/vlog/c4-720p-image-%m%d%Y-%H%M%S.png"
+	}
+    },
+    "c5":{
+	"capture" :{
+	    "type" : "CSI",
+	    "flip-method": 0,
+	    "device": "/dev/video5"
+	},
+	"streaming":{
+            "format": "rtsp",
+            "mapping": "stream5",
+            "port": 1235
+	},
+	"recording":{
+            "format": "mp4",
+            "duration": 60,
+            "filename": "/home/botuser/vlog/c5-720p-video-%m%d%Y-%H%M%S.mp4",
+	    "width": 1280,
+	    "height": 720,
+	    "bitrate": 4000000
+	},
+	"snapshot":{
+            "format": "png",
+            "filename": "/home/botuser/vlog/c5-720p-image-%m%d%Y-%H%M%S.png"
+	}
+    },
+    "c6":{
+	"capture" :{
+	    "type" : "CSI",
+	    "flip-method": 2,
+	    "device": "/dev/video6"
+	},
+	"streaming":{
+            "format": "rtsp",
+            "mapping": "stream6",
+            "port": 1236
+	},
+	"recording":{
+            "format": "mp4",
+            "duration": 60,
+            "filename": "/home/botuser/vlog/c6-720p-video-%m%d%Y-%H%M%S.mp4",
+	    "width": 1280,
+	    "height": 720,
+	    "bitrate": 4000000
+	},
+	"snapshot":{
+            "format": "png",
+            "filename": "/home/botuser/vlog/c6-720p-image-%m%d%Y-%H%M%S.png"
+	}
+    },
+    "c7":{
+	"capture" :{
+	    "type" : "CSI",
+	    "flip-method": 2,
+	    "device": "/dev/video7"
+	},
+	"streaming":{
+            "format": "rtsp",
+            "mapping": "stream7",
+            "port": 1237
+	},
+	"recording":{
+            "format": "mp4",
+            "duration": 60,
+            "filename": "/home/botuser/vlog/c7-720p-video-%m%d%Y-%H%M%S.mp4",
+	    "width": 1280,
+	    "height": 720,
+	    "bitrate": 4000000
+	},
+	"snapshot":{
+            "format": "png",
+            "filename": "/home/botuser/vlog/c7-720p-image-%m%d%Y-%H%M%S.png"
+	}
+    }
+}

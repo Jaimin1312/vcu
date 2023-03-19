@@ -1,0 +1,98 @@
+{
+    "c0":{
+		"capture":{
+			"type": "CSI",
+			"flip-method": 0,
+			"device": "/dev/video0"
+		},
+		"streaming":{
+			"format": "rtsp",
+			"mapping": "stream0",
+			"port": 1230
+		},
+		"recording":{
+			"format": "mp4",
+			"duration": 0,
+			"filename": "/home/botuser/camera-capture/videos/device0_%m%d%YT%H%M%S.mp4",
+			"width": 640,
+			"height": 360,
+			"bitrate": 1000000
+		},
+		"snapshot":{
+			"format": "png",
+			"filename": "/home/botuser/camera-capture/images/device0_%m%d%YT%H%M%S.png"
+		}
+    },
+    "c2":{
+		"capture":{
+			"type": "CSI",
+			"flip-method": 0,
+			"device": "/dev/video2"
+		},
+		"streaming":{
+			"format": "rtsp",
+			"mapping": "stream2",
+			"port": 1232
+		},
+		"recording":{
+			"format": "mp4",
+			"duration": 0,
+			"filename": "/home/botuser/camera-capture/videos/device2_%m%d%YT%H%M%S.mp4",
+			"width": 640,
+			"height": 360,
+			"bitrate": 1000000
+		},
+		"snapshot":{
+			"format": "png",
+			"filename": "/home/botuser/camera-capture/images/device2_%m%d%YT%H%M%S.png"
+		}
+    },
+    "c4":{
+		"capture":{
+			"type": "CSI",
+			"flip-method": 0,
+			"device": "/dev/video4"
+		},
+		"streaming":{
+			"format": "rtsp",
+			"mapping": "stream4",
+			"port": 1234
+		},
+		"recording":{
+			"format": "mp4",
+			"duration": 0,
+			"filename": "/home/botuser/camera-capture/videos/device4_%m%d%YT%H%M%S.mp4",
+			"width": 640,
+			"height": 360,
+			"bitrate": 1000000
+		},
+		"snapshot":{
+			"format": "png",
+			"filename": "/home/botuser/camera-capture/images/device4_%m%d%YT%H%M%S.png"
+		}
+    },
+    "c6":{
+		"capture":{
+			"type": "CSI",
+			"flip-method": 0,
+			"device": "/dev/video6"
+		},
+		"streaming":{
+			"format": "rtsp",
+			"mapping": "stream6",
+			"port": 1236
+		},
+		"recording":{
+			"format": "mp4",
+			"duration": 0,
+			"filename": "/home/botuser/camera-capture/videos/device6_%m%d%YT%H%M%S.mp4",
+			"width": 640,
+			"height": 360,
+			"bitrate": 1000000
+		},
+		"snapshot":{
+			"format": "png",
+			"filename": "/home/botuser/camera-capture/images/device6_%m%d%YT%H%M%S.png"
+		}
+    }
+}

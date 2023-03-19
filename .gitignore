@@ -1,0 +1,69 @@
+*.log
+build/
+dist/
+release/
+*.map
+*.hex
+*.d
+*.o
+*.a
+*.mk
+*.axf
+*.bin
+makefile
+.history/
+org.eclipse.core.resources/
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+Debug/
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# Python
+*.pyc
+__pycache__/
+
+# Lint
+stack.txt
+
+# Boost Build
+vendor/boost/tools/build/v2/engine/bin.ntx86/
+vendor/boost/b2.exe
+vendor/boost/bjam.exe
+vendor/boost/project-config.jam
+
+# Python Unittest Coverage Reports
+.coverage
+htmlcov
+
+
+venv
+activate.bat
+.idea*
+zlog*
+temp-image-export/
+logs*
+ztest*
+baseline-images/

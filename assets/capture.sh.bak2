@@ -1,0 +1,29 @@
+# NOTE: Commands issued from the client will be ignored without adequate pause after
+#       starting the server.
+# NOTE: Take Snapshot command will not complete generating images without adequate pause
+#       before attemtping to kill the server.
+SCRIPT_DIR=`dirname "$0"`
+
+mkdir -p ~/camera-capture/images
+mkdir -p ~/camera-capture/videos
+
+# Take snapshot images from even numbered devices using media server
+# NOTE: experimenting with timing on the first half to see if this is adequate.
+/usr/bin/symbot_server-0.4 --config-file=$SCRIPT_DIR/camconfig-8a.json --verbose &
+sleep 2s
+/usr/bin/symbot_client-0.4 play
+sleep 1s # Without a delay between play and take_snapshot, images are dark
+/usr/bin/symbot_client-0.4 take_snapshot
+sleep 3s
+killall -9 symbot_server-0.4
+
+# Take snapshot images from odd numbered devices using media server
+/usr/bin/symbot_server-0.4 --config-file=$SCRIPT_DIR/camconfig-8b.json --verbose &
+sleep 2s
+/usr/bin/symbot_client-0.4 play
+sleep 1s # Without a delay between play and take_snapshot, images are dark
+/usr/bin/symbot_client-0.4 take_snapshot
+sleep 3s
+killall -9 symbot_server-0.4
+
+ls -al ~/camera-capture/images
