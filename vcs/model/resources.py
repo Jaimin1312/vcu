@@ -10,3 +10,6 @@ class VCSResources:
     serial_numbers: str
     enable_transaction_log: bool
     deserializer_lookup: dict
+    operator_name: str
+    start_time: str
+    vcu_number: str

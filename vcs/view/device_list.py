@@ -87,7 +87,17 @@ class DeviceItem(tk.Frame):
         if self._justgotfocus:
             self._text = ""
             self._justgotfocus = False
+            
         self._text += event.char
+        
+        try:
+            f = open("vcunumber.txt", "a")
+            f.write(self._text)
+            f.close()
+        except Exception as e:
+            print(e)
+            pass
+        
         self._serialnumber_label.config(text=self._text)
 
 

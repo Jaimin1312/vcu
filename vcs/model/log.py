@@ -12,6 +12,7 @@ import unicodedata
 from os.path import dirname, join
 
 from . import application
+from vcs.model.resources import VCSResources
 
 
 def close(logger):
@@ -134,6 +135,12 @@ def open_log(log_directory):
     logging.info('VERSION:%s', application.VERSION)
     logging.info('PART:%s', application.ITEM_NUM_VPCB)
 
+def save_vc_info(log_directory,resources):
+    primary_log_path = get_diagnostic_log_path(log_directory)
+    initialize(primary_log_path)
+    logging.info('Operator Name: %s', resources.operator_name)
+    logging.info('Start Time: %s', resources.start_time)
+    logging.info('Serial Number: %s', resources.serial_numbers)
 
 def slugify(value, allow_unicode=False):
     """

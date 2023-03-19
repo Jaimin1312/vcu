@@ -12,8 +12,11 @@ from vcs.model.resources import VCSResources
 from vcs.view.camera_grid import CameraGrid
 from vcs.view.device_list import DeviceList
 from vcs.view.log_output import LogOutput
+from vcs.view.operator import OperatorItem
 
-
+import datetime
+import os
+import shutil
 
 class MainLayout(tk.Frame):
     """ Camera/VCU test application GUI (tkinter).
@@ -56,6 +59,13 @@ class MainLayout(tk.Frame):
         # Create elements
         self._camera_grid = CameraGrid(left_frame)
         self._device_list = DeviceList(right_frame, device_count, device_term)
+        self._operator_label = OperatorItem(right_frame)
+        self._step_count = 0
+
+        input_operator_name = tk.Entry(right_frame)
+        input_operator_name.pack(fill=tk.X, padx=(0, 0), pady=(0, 10))
+        self._input_operator_name=input_operator_name
+
         self._start_button = ttk.Button(
             button_bar, text="Start", command=self._check_for_start, width=20)
         self._log_output = LogOutput(right_frame)
@@ -71,7 +81,6 @@ class MainLayout(tk.Frame):
         button_bar.pack(fill=tk.X, padx=(0, 0), pady=(0, 10))
         self._log_output.frame.pack(fill=tk.BOTH, expand=True)
         self._start_button.pack(anchor=tk.E, padx=(0,0), pady=(0, 0))
-
         self.pack(expand=True, fill=tk.BOTH)
 
 
@@ -110,16 +119,33 @@ class MainLayout(tk.Frame):
             "Check for start", "All positions have been assigned.\nStart the test?", default='no')
         if response:
             # Load in latest settings and then save merged values
+            self._start_time = str(datetime.datetime.now().strftime('%Y-%m-%d T%H:%M:%S'))           
             application.settings.load()
             application.settings.save()
+            VCU_NUMBER = ""
+            try:
+                f = open("vcunumber.txt", "r")
+                VCU_NUMBER = f.read() 
+                f.close()
 
-            self.controller.start(
-                VCSResources(
-                    serial_numbers = self._mapper.get_serial_numbers(self._device_list.values),
-                    enable_transaction_log = self._mapper.enable_transaction_log,
-                    deserializer_lookup = self._mapper.get_deserializer_lookup(),
+                os.remove('vcunumber.txt')
+            except Exception as e:
+                pass
+     
+            if VCU_NUMBER != "":
+                self.controller.start(
+                    VCSResources(
+                        vcu_number=VCU_NUMBER,
+                        start_time = self._start_time,
+                        operator_name = self._input_operator_name.get(),
+                        serial_numbers = self._mapper.get_serial_numbers(self._device_list.values),
+                        enable_transaction_log = self._mapper.enable_transaction_log,
+                        deserializer_lookup = self._mapper.get_deserializer_lookup(),
+                    )
                 )
-            )
+            else:
+                tk.messagebox.showerror('Error','VCU NUMBER can not be empty!')
+
 
 
     def _cmd_open_logging_dir(self):
@@ -166,12 +192,19 @@ class MainLayout(tk.Frame):
                 if value is BGStates.SETUP:
                     self._log_output.clear()
                     self._camera_grid.clear()
+                    self._log_output.insert(f'Operator Name: {str(self._input_operator_name.get())}',True)
+                    self._log_output.insert(f'Start Time: {str(self._start_time)}',True)
                 if value is BGStates.CLEANUP:
                     self._device_list.clear()
                     self._device_list.select(0)
                     self.focus()
                 if value is not BGStates.IDLE:
-                    self._log_output.insert(f'Step: {value}')
+                    self._step_count = self._step_count + 1
+                    self._log_output.insert(f"")
+                    self._log_output.insert(f"---------------- STEP {self._step_count} ----------------")
+                    self._log_output.insert(f"------------------------------------------")
+                    self._log_output.insert(f"")
+                    self._log_output.insert(f'Step: {value}')      
             elif key == 'msg':
                 self._log_output.insert(value[0], newline=value[1])
             elif key == 'ask':

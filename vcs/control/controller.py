@@ -110,7 +110,6 @@ class ExecutorController():
             self._cancelled = False
             self._update_state(BGStates.SETUP)
 
-
     def resume(self, value):
         """ Restarts the background process after it has been paused to wait on user input.
 
@@ -292,6 +291,10 @@ class ExecutorController():
 
         # Wait for IP address?
         time.sleep(1)
+        self._log(' VCU Number: '+str(self._vcresources.vcu_number), newline=True)
+        self._log(' Operator Name: '+str(self._vcresources.operator_name), newline=True)
+        self._log(' Start Time: '+str(self._vcresources.start_time), newline=True)
+        self._log(' Serial Numbers: '+str(self._vcresources.serial_numbers), newline=True)
         self._log('    Establishing connection', newline=True)
         self._log(application.settings.values.vcu_hostname, newline=True)
         self._log(application.settings.values.vcu_password)
