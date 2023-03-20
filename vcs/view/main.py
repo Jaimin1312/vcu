@@ -122,29 +122,30 @@ class MainLayout(tk.Frame):
             self._start_time = str(datetime.datetime.now().strftime('%Y-%m-%d T%H:%M:%S'))           
             application.settings.load()
             application.settings.save()
-            VCU_NUMBER = ""
-            try:
-                f = open("vcunumber.txt", "r")
-                VCU_NUMBER = f.read() 
-                f.close()
+            # VCU_NUMBER = ""
+            # try:
+            #     f = open("vcunumber.txt", "r")
+            #     VCU_NUMBER = f.read() 
+            #     f.close()
 
-                os.remove('vcunumber.txt')
-            except Exception as e:
-                pass
+            #     os.remove('vcunumber.txt')
+            # except Exception as e:
+            #     pass
      
-            if VCU_NUMBER != "":
-                self.controller.start(
-                    VCSResources(
-                        vcu_number=VCU_NUMBER,
-                        start_time = self._start_time,
-                        operator_name = self._input_operator_name.get(),
-                        serial_numbers = self._mapper.get_serial_numbers(self._device_list.values),
-                        enable_transaction_log = self._mapper.enable_transaction_log,
-                        deserializer_lookup = self._mapper.get_deserializer_lookup(),
-                    )
+            # if VCU_NUMBER != "":
+            VCU_NUMBER = ""
+            self.controller.start(
+                VCSResources(
+                    vcu_number=VCU_NUMBER,
+                    start_time = self._start_time,
+                    operator_name = self._input_operator_name.get(),
+                    serial_numbers = self._mapper.get_serial_numbers(self._device_list.values),
+                    enable_transaction_log = self._mapper.enable_transaction_log,
+                    deserializer_lookup = self._mapper.get_deserializer_lookup(),
                 )
-            else:
-                tk.messagebox.showerror('Error','VCU NUMBER can not be empty!')
+            )
+            # else:
+                # tk.messagebox.showerror('Error','VCU NUMBER can not be empty!')
 
 
 
