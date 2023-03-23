@@ -18,6 +18,7 @@ COLOR_FILL_NORMAL = "LightGray"
 PAD = 4
 ALLOW_WRAPAROUND = False
 
+#design for Operator lable and Input
 
 class OperatorItem(tk.Frame):
 

@@ -135,6 +135,7 @@ def open_log(log_directory):
     logging.info('VERSION:%s', application.VERSION)
     logging.info('PART:%s', application.ITEM_NUM_VPCB)
 
+#AV Save info log file
 def save_vc_info(log_directory,resources):
     primary_log_path = get_diagnostic_log_path(log_directory)
     initialize(primary_log_path)

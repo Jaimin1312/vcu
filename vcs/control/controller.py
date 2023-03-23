@@ -291,6 +291,9 @@ class ExecutorController():
 
         # Wait for IP address?
         time.sleep(1)
+
+        #AV this will show logs in in GUI
+
         self._log(' VCU Number: '+str(self._vcresources.vcu_number), newline=True)
         self._log(' Operator Name: '+str(self._vcresources.operator_name), newline=True)
         self._log(' Start Time: '+str(self._vcresources.start_time), newline=True)

@@ -13,3 +13,5 @@ class VCSResources:
     operator_name: str
     start_time: str
     vcu_number: str
+
+#AV added operator_name , start_time and vcu_number fields.

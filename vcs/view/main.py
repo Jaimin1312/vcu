@@ -59,6 +59,9 @@ class MainLayout(tk.Frame):
         # Create elements
         self._camera_grid = CameraGrid(left_frame)
         self._device_list = DeviceList(right_frame, device_count, device_term)
+
+        #AV operator label and input fileds for operator name input
+
         self._operator_label = OperatorItem(right_frame)
         self._step_count = 0
 
@@ -119,6 +122,8 @@ class MainLayout(tk.Frame):
             "Check for start", "All positions have been assigned.\nStart the test?", default='no')
         if response:
             # Load in latest settings and then save merged values
+
+            #AV taken start time when press button 
             self._start_time = str(datetime.datetime.now().strftime('%Y-%m-%d T%H:%M:%S'))           
             application.settings.load()
             application.settings.save()
@@ -193,6 +198,8 @@ class MainLayout(tk.Frame):
                 if value is BGStates.SETUP:
                     self._log_output.clear()
                     self._camera_grid.clear()
+
+                    #AV show information iside log GUI
                     self._log_output.insert(f'Operator Name: {str(self._input_operator_name.get())}',True)
                     self._log_output.insert(f'Start Time: {str(self._start_time)}',True)
                 if value is BGStates.CLEANUP:
@@ -200,6 +207,8 @@ class MainLayout(tk.Frame):
                     self._device_list.select(0)
                     self.focus()
                 if value is not BGStates.IDLE:
+                    #AV show information iside log GUI with steps
+
                     self._step_count = self._step_count + 1
                     self._log_output.insert(f"")
                     self._log_output.insert(f"---------------- STEP {self._step_count} ----------------")
